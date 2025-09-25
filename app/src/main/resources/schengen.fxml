@@ -1,0 +1,62 @@
+<!-- UI for Schengen short-stay compliance checker -->
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:controller="schengen.shortstay.Controller"
+    xmlns:fx="http://javafx.com/fxml" minWidth="560" minHeight="400">
+    <VBox AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0"
+          AnchorPane.topAnchor="12.0" AnchorPane.bottomAnchor="12.0" >
+        <HBox>
+            <Label text="%nameLabel"/>
+            <Separator/>
+            <TextField fx:id="nameField" prefWidth="150.0">
+                <tooltip>
+                    <Tooltip text="%ttName"/>
+                </tooltip>
+            </TextField>
+            <Separator/>
+            <Label text="%startLabel"/>
+            <Separator/>
+            <DatePicker fx:id="startPicker" prefWidth="108.0">
+                <tooltip>
+                    <Tooltip text="%ttStart"/>
+                </tooltip>
+            </DatePicker>
+            <Separator/>
+            <Label text="%endLabel"/>
+            <Separator/>
+            <DatePicker fx:id="endPicker" prefWidth="108.0">
+                <tooltip>
+                    <Tooltip text="%ttEnd"/>
+                </tooltip>
+            </DatePicker>
+            <Separator/>
+            <Button fx:id="clearButton" text="X">
+                <tooltip>
+                    <Tooltip text="%ttClear"/>
+                </tooltip>
+            </Button>
+        </HBox>
+        <Separator/>
+        <HBox>
+            <Label text="" />
+            <Label fx:id="statusLabel" text="%startEntry"/>
+        </HBox>
+        <Separator/>
+        <TableView fx:id="stayTable"/>
+        <Separator/>
+        <HBox alignment="CENTER">
+            <Button fx:id="addButton" text="%addLabel">
+                <tooltip>
+                    <Tooltip text="%ttAdd"/>
+                </tooltip>
+            </Button>
+            <Separator/>
+            <Button fx:id="removeButton" text="%removeLabel">
+                <tooltip>
+                    <Tooltip text="%ttRemove"/>
+                </tooltip>
+            </Button>
+        </HBox>
+    </VBox>
+</AnchorPane>
