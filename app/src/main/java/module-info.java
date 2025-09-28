@@ -1,4 +1,4 @@
-/* 
+
 module schengen.shortstay {
 
     requires javafx.controls;
@@ -9,4 +9,3 @@ module schengen.shortstay {
 
     exports schengen.shortstay;
 }
-*/

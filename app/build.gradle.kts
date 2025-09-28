@@ -7,7 +7,7 @@ plugins {
     application
     checkstyle
     id("org.openjfx.javafxplugin") version "0.1.0"
-    // id("org.javamodularity.moduleplugin") version "1.8.15"
+    id("org.javamodularity.moduleplugin") version "1.8.15"
 }
 
 javafx {
@@ -26,24 +26,23 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.eclipse.store:storage-embedded:3.0.1")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
-    //modularity.inferModulePath = true
+    modularity.inferModulePath = true
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
 application {
-    // mainModule = "schengen.shortstay"
+    mainModule = "schengen.shortstay"
     // Define the main class for the application.
     mainClass = "schengen.shortstay.App"
-    applicationDefaultJvmArgs = listOf("--add-exports", "java.base/jdk.internal.misc=ALL-UNNAMED")
+    applicationDefaultJvmArgs = listOf("--add-exports", "java.base/jdk.internal.misc=org.eclipse.serializer.base")
 }
 
 tasks.named<Test>("test") {
