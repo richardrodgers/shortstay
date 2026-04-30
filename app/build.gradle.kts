@@ -7,7 +7,8 @@ plugins {
     application
     checkstyle
     id("org.openjfx.javafxplugin") version "0.1.0"
-    id("org.javamodularity.moduleplugin") version "1.8.15"
+    id("org.javamodularity.moduleplugin") version "2.0.0"
+    id("org.beryx.jlink") version "4.0.0"
 }
 
 javafx {
@@ -27,7 +28,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     implementation(libs.guava)
-    implementation("org.eclipse.store:storage-embedded:3.0.1")
+    implementation("org.eclipse.store:storage-embedded:4.0.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -43,6 +44,21 @@ application {
     // Define the main class for the application.
     mainClass = "schengen.shortstay.App"
     applicationDefaultJvmArgs = listOf("--add-exports", "java.base/jdk.internal.misc=org.eclipse.serializer.base")
+    applicationDefaultJvmArgs += listOf("--enable-native-access=javafx.graphics")
+}
+
+jlink {
+    addExtraModulePath("./app/jmods/openjfx-26.0.1_linux-x64_bin-jmods/javafx-jmods-26.0.1")
+    addExtraDependencies("javafx")
+    mergedModule {
+        requires("javafx.fxml")
+        requires("javafx.controls")
+        requires("javafx.graphics")
+    }
+    options = listOf("--strip-java-debug-attributes", "--compress", "zip-6", "--no-header-files", "--no-man-pages")
+    launcher {
+        name = "shortStay"
+    }
 }
 
 tasks.named<Test>("test") {
